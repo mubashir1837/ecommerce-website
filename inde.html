@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sick Fashion Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <style>
+        .slideshow {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            /* Adjust height as needed */
+        }
+
+        .slides {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .active-slide {
+            display: block;
+        }
+
+        .slide-text {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%);
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+
+        .currency-menu,
+        .language-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+
+        }
+
+        .currency-menu.active,
+        .language-menu.active {
+            display: block;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let slideIndex = 0;
+            const slides = document.querySelectorAll('.slides');
+            const showSlides = () => {
+                slides.forEach((slide, index) => {
+                    slide.style.display = 'none';
+                });
+                slideIndex++;
+                if (slideIndex > slides.length) slideIndex = 1;
+                slides[slideIndex - 1].style.display = 'block';
+                setTimeout(showSlides, 3000); // Change image every 3 seconds
+            };
+            showSlides();
+
+            const languageButton = document.querySelector('.language-button');
+            const languageMenu = document.querySelector('.language-menu');
+            languageButton.addEventListener('click', () => {
+                languageMenu.classList.toggle('active');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!languageButton.contains(e.target) && !languageMenu.contains(e.target)) {
+                    languageMenu.classList.remove('active');
+                }
+            });
+
+            const currencyButton = document.querySelector('.currency-button');
+            const currencyMenu = document.querySelector('.currency-menu');
+            currencyButton.addEventListener('click', () => {
+                currencyMenu.classList.toggle('active');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!currencyButton.contains(e.target) && !currencyMenu.contains(e.target)) {
+                    currencyMenu.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</head>
+
+<body class="font-sans bg-gray-100">
+    <!-- Top Bar -->
+    <div class="bg-white shadow-md">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <div class="flex items-center space-x-4">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+            <div class="text-gray-600">
+                FREE SHIPPING THIS WEEK ORDER OVER - $55
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto flex justify-between items-center py-4">
+            <a href="#" class="text-4xl font-bold text-gray-800">Sick</a>
+            <div class="flex-grow mx-8">
+                <input type="text" placeholder="Enter any product name..." class="w-full px-4 py-2 border rounded-lg">
+            </div>
+            <div class="flex space-x-6 relative">
+                <div class="relative">
+                    <button class="text-gray-800 currency-button">USD $</button>
+                    <div class="currency-menu mt-2 w-48 bg-white border rounded shadow-lg">
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">USD $</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">EUR €</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">GBP £</a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <button class="text-gray-800 language-button">English</button>
+                    <div class="language-menu mt-2 w-48 bg-white border rounded shadow-lg">
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">English</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Español</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Français</a>
+                    </div>
+                </div>
+                <a href="#"><i class="fa fa-user"></i></a>
+                <a href="#"><i class="fa fa-heart"></i><span class="text-red-500">0</span></a>
+                <a href="#"><i class="fa fa-shopping-cart"></i><span class="text-red-500">0</span></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-gray-200 shadow-md">
+        <div class="container mx-auto flex justify-center space-x-6 py-2">
+            <a href="#" class="text-gray-800">HOME</a>
+            <a href="#" class="text-gray-800">CATEGORIES</a>
+            <a href="#" class="text-gray-800">MEN'S</a>
+            <a href="#" class="text-gray-800">WOMEN'S</a>
+            <a href="#" class="text-gray-800">JEWELRY</a>
+            <a href="#" class="text-gray-800">PERFUME</a>
+            <a href="#" class="text-gray-800">BLOG</a>
+            <a href="#" class="text-gray-800">HOT OFFERS</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto my-8">
+        <div class="bg-white p-6 rounded-lg shadow-lg relative">
+            <div class="slideshow">
+                <div class="slides active-slide">
+                    <img src="women.jpg" alt="Women's Fashion 1" class="w-full h-full object-cover rounded-lg">
+                </div>
+                <div class="slides">
+                    <img src="ecommerce.PNG" alt="Women's Fashion 2" class="w-full h-full object-cover rounded-lg">
+                </div>
+                <div class="slides">
+                    <img src="women.jpg" alt="Women's Fashion 3" class="w-full h-full object-cover rounded-lg">
+                </div>
+            </div>
+            <div class="slide-text">
+                <h2 class="text-2xl font-bold text-white">Trending Item</h2>
+                <h3 class="text-xl text-pink-300 mt-2">WOMEN'S LATEST FASHION SALE</h3>
+                <p class="text-white mt-2">starting at <span class="text-2xl text-blue-300">$20.00</span></p>
+                <button class="mt-4 bg-pink-500 text-white py-2 px-4 rounded-lg">Shop Now</button>
+            </div>
+        </div>
+    </main>
+
+    <main class="container mx-auto my-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Product Card -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <img src="pexels-webdonut-19090.jpg" alt="Jacket" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-pink-500 uppercase text-sm">Jacket</h3>
+                <h2 class="text-gray-800 font-bold text-lg">MEN Yarn Fleece Full-Zip Jacket</h2>
+                <div class="flex items-center mt-2">
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-gray-400"><i class="fas fa-star"></i></span>
+                </div>
+                <p class="text-gray-600 mt-2">$58.00</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <img src="jacket.jpg" alt="Party Wear" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-pink-500 uppercase text-sm">Party Wear</h3>
+                <h2 class="text-gray-800 font-bold text-lg">Women's Party Wear Shoes</h2>
+                <div class="flex items-center mt-2">
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-gray-300"><i class="fas fa-star"></i></span>
+                    <span class="text-gray-300"><i class="fas fa-star"></i></span>
+                </div>
+                <div class="mt-4">
+                    <span class="text-gray-600 line-through">$75.00</span>
+                    <span class="text-red-500 font-bold">$25.00</span>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <img src="shirt8.png" alt="Party Wear" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-pink-500 uppercase text-sm">Party Wear</h3>
+                <h2 class="text-gray-800 font-bold text-lg">Women's Party Wear Shoes</h2>
+                <div class="flex items-center mt-2">
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-gray-300"><i class="fas fa-star"></i></span>
+                    <span class="text-gray-300"><i class="fas fa-star"></i></span>
+                </div>
+                <div class="mt-4">
+                    <span class="text-gray-600 line-through">$75.00</span>
+                    <span class="text-red-500 font-bold">$25.00</span>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <img src="640-men-s-sh.jpg" alt="Party Wear" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-pink-500 uppercase text-sm">Party Wear</h3>
+                <h2 class="text-gray-800 font-bold text-lg">Women's Party Wear Shoes</h2>
+                <div class="flex items-center mt-2">
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-gray-300"><i class="fas fa-star"></i></span>
+                    <span class="text-gray-300"><i class="fas fa-star"></i></span>
+                </div>
+                <div class="mt-4">
+                    <span class="text-gray-600 line-through">$75.00</span>
+                    <span class="text-red-500 font-bold">$25.00</span>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <img src="shirt4.png" alt="Party Wear" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-pink-500 uppercase text-sm">Party Wear</h3>
+                <h2 class="text-gray-800 font-bold text-lg">Women's Party Wear Shoes</h2>
+                <div class="flex items-center mt-2">
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-gray-300"><i class="fas fa-star"></i></span>
+                    <span class="text-gray-300"><i class="fas fa-star"></i></span>
+                </div>
+                <div class="mt-4">
+                    <span class="text-gray-600 line-through">$75.00</span>
+                    <span class="text-red-500 font-bold">$25.00</span>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <img src="watch.PNG" alt="Party Wear" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-pink-500 uppercase text-sm">Party Wear</h3>
+                <h2 class="text-gray-800 font-bold text-lg">Women's Party Wear Shoes</h2>
+                <div class="flex items-center mt-2">
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-gray-300"><i class="fas fa-star"></i></span>
+                    <span class="text-gray-300"><i class="fas fa-star"></i></span>
+                </div>
+                <div class="mt-4">
+                    <span class="text-gray-600 line-through">$75.00</span>
+                    <span class="text-red-500 font-bold">$25.00</span>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <img src="shirt1.PNG" alt="Party Wear" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-pink-500 uppercase text-sm">Party Wear</h3>
+                <h2 class="text-gray-800 font-bold text-lg">Women's Party Wear Shoes</h2>
+                <div class="flex items-center mt-2">
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-gray-300"><i class="fas fa-star"></i></span>
+                    <span class="text-gray-300"><i class="fas fa-star"></i></span>
+                </div>
+                <div class="mt-4">
+                    <span class="text-gray-600 line-through">$75.00</span>
+                    <span class="text-red-500 font-bold">$25.00</span>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <img src="shirt2.PNG" alt="Party Wear" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-pink-500 uppercase text-sm">Party Wear</h3>
+                <h2 class="text-gray-800 font-bold text-lg">Women's Party Wear Shoes</h2>
+                <div class="flex items-center mt-2">
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-gray-300"><i class="fas fa-star"></i></span>
+                    <span class="text-gray-300"><i class="fas fa-star"></i></span>
+                </div>
+                <div class="mt-4">
+                    <span class="text-gray-600 line-through">$75.00</span>
+                    <span class="text-red-500 font-bold">$25.00</span>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <img src="shirt3.PNG" alt="Party Wear" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-pink-500 uppercase text-sm">Party Wear</h3>
+                <h2 class="text-gray-800 font-bold text-lg">Women's Party Wear Shoes</h2>
+                <div class="flex items-center mt-2">
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                    <span class="text-gray-300"><i class="fas fa-star"></i></span>
+                    <span class="text-gray-300"><i class="fas fa-star"></i></span>
+                </div>
+                <div class="mt-4">
+                    <span class="text-gray-600 line-through">$75.00</span>
+                    <span class="text-red-500 font-bold">$25.00</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Testimonials Section -->
+    <section class="p-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-2xl font-bold mb-6">Testimonials</h2>
+            <div class="flex flex-col md:flex-row md:space-x-4">
+                <div class="flex-shrink-0 bg-gray-50 p-4 rounded-lg shadow-md mb-4 md:mb-0">
+                    <div class="flex items-center space-x-4">
+                        <img class="w-16 h-16 rounded-full" src="pro.jpg" alt="Profile Image">
+                        <div>
+                            <h3 class="text-xl font-semibold">Elsa Doe</h3>
+                            <p class="text-gray-500">CEO & Founder Invision</p>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-gray-700">Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor dolor sit
+                        amet.</p>
+                </div>
+                <!-- Additional testimonials can be added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotional Banner -->
+    <section class="relative bg-gray-100 p-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="relative bg-white rounded-lg shadow-lg overflow-hidden">
+                <img class="w-full object-cover" src="ecom.avif" alt="Summer Collection">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <div class="text-center text-white">
+                        <span class="bg-black bg-opacity-75 py-2 px-4 rounded-md text-sm">25% DISCOUNT</span>
+                        <h2 class="text-4xl font-bold mt-4">Summer Collection</h2>
+                        <p class="text-lg mt-2">Starting @ $20 <a href="#" class="text-blue-300 underline">Shop Now</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="p-6 bg-gray-800 text-white">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-2xl font-bold mb-6">Contact Us</h2>
+            <form class="space-y-4">
+                <div class="flex flex-col md:flex-row md:space-x-4">
+                    <div class="flex-1">
+                        <label for="name" class="block text-sm font-medium">Name</label>
+                        <input type="text" id="name"
+                            class="mt-1 block w-full p-2 bg-gray-700 rounded-md border-gray-600 focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+                    <div class="flex-1">
+                        <label for="email" class="block text-sm font-medium">Email</label>
+                        <input type="email" id="email"
+                            class="mt-1 block w-full p-2 bg-gray-700 rounded-md border-gray-600 focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+                </div>
+                <div>
+                    <label for="message" class="block text-sm font-medium">Message</label>
+                    <textarea id="message" rows="4"
+                        class="mt-1 block w-full p-2 bg-gray-700 rounded-md border-gray-600 focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                </div>
+                <div>
+                    <button type="submit" class="px-4 py-2 bg-indigo-500 rounded-md text-white hover:bg-indigo-600">Send
+                        Message</button>
+                </div>
+            </form>
+        </div>
+
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-16">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div>
+                <h3 class="text-xl font-bold mb-2">Sick Fashion Store</h3>
+                <p>Your one-stop destination for trendy fashion.</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-2">Quick Links</h3>
+                <ul>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Categories</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Men's</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Women's</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-2">Contact Us</h3>
+                <p>123 Fashion St., New York, NY</p>
+                <p>Email: info@sickfashion.com</p>
+                <p>Phone: +1 (123) 456-7890</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
