@@ -1,0 +1,36 @@
+.slideshow {
+    position: relative;
+    width: 100%;
+    height: 400px;
+}
+
+.slides {
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+
+.active-slide {
+    display: block;
+}
+
+.slide-text {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.currency-menu,
+.language-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+}
+
+.currency-menu.active,
+.language-menu.active {
+    display: block;
+}
